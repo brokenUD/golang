@@ -1,0 +1,29 @@
+before_script:
+  - export GO111MODULE=on
+  - export PATH=/usr/local/go/bin:$PATH
+stages:
+  - deploy_dev
+  - deploy_test
+compile_test:
+  stage: deploy_test
+  only:
+    - lite_test
+  script:
+    - sh $CI_PROJECT_DIR/scripts/test-control.sh
+  environment:
+    name: environment_test
+  tags:
+    - zy-service-devcompile01
+devsrv01-test:
+  stage: deploy_dev
+  only:
+    - /^dev_devsrv01-.*/
+    - /^QAOK-dev_devsrv01-.*/
+    - /^dev_devsrv07-.*/
+    - /^QAOK-dev_devsrv07-.*/
+  script:
+    - echo "hello"
+  environment:
+    name: 172.20.30.96
+  tags:
+    - pp-server

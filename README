@@ -1,0 +1,6 @@
+用Go mod & vendor构建
+
+export GO111MODULE=on
+
+编译:
+./build
