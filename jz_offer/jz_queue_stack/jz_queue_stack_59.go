@@ -1,4 +1,4 @@
-package jz_search
+package jz_queue_stack
 
 import (
 // "brokenUd/golang/jz_offer/proto"
