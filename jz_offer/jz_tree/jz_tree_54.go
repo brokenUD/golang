@@ -1,4 +1,4 @@
-package jz_list
+package jz_tree
 
 import (
 	"brokenUd/golang/jz_offer/proto"
