@@ -47,6 +47,11 @@ func func3(ctx context.Context, wg *sync.WaitGroup) error {
 		respC <- 10
 	}()
 
+	// sl := &sync.Mutex{}
+	// sl.Lock()
+	// sl.Unlock()
+	// sl.Lock()
+	// sl.Unlock()
 	select {
 	case <-ctx.Done():
 		fmt.Println("cancel")
@@ -77,7 +82,7 @@ func func4(ctx context.Context) {
 	// 处理逻辑
 	go func() {
 		// 处理耗时
-		time.Sleep(time.Second * 3)
+		time.Sleep(time.Second * 5)
 		resp <- struct{}{}
 	}()
 
@@ -98,7 +103,7 @@ func func4(ctx context.Context) {
 }
 
 func Func4() {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*2)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*4)
 	defer cancel()
 	func4(ctx)
 }

@@ -1,0 +1,25 @@
+syntax="proto3";
+
+package idl;
+
+option go_package="brokenUd/golang/xxx/grpc/idl/my_proto;student_service"
+
+import "google/protobuf/timestamp.proto"
+
+message Student {
+	string Name = 1;
+	int32 Age = 2;
+	bool Gender = 3;
+	float Height = 4;
+	repeated string Location = 5;
+	map<string, float> scores = 6;
+}
+
+message Request {
+	string Student = 1;
+}
+
+service StudentService {
+	rpc GetStudentInfo (Request) return (Student);
+}
+

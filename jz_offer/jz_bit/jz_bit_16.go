@@ -1,7 +1,7 @@
 package jz_bit
 
 import (
-	"math"
+	// "math"
 )
 
 // 描述
@@ -13,7 +13,7 @@ import (
 // 3.有特殊判题，不用考虑小数点后面0的位数。
 
 // 数据范围： |base| \le 100 \∣base∣≤100  ， |exponent| \le 100 \∣exponent∣≤100  ,保证最终结果一定满足 |val| \le 10^4 \∣val∣≤10 4
-// 进阶：空间复杂度 O(1)\O(1)  ，时间复杂度 O(n)\O(n) 
+// 进阶：空间复杂度 O(1)\O(1)  ，时间复杂度 O(n)\O(n)
 
 func Power( base float64 ,  exponent int ) float64 {
 	if exponent < 0 {
@@ -21,7 +21,7 @@ func Power( base float64 ,  exponent int ) float64 {
 		exponent = -exponent
 	}
 	// res := 1.0
-	return math.Pow(base, float64(exponent))
+	return Pow(base, exponent)
 }
 
 func Pow( base float64 ,  exponent int ) float64 {
