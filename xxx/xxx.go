@@ -42,5 +42,12 @@ func main() {
 
 	// demotest.GormTest()
 
-	demotest.RedisTest()
+	// demotest.NimingF()
+
+	// demotest.DemotestFun20()
+	// demotest.DemotestFun21()
+	// demotest.DemotestFun22()
+
+	// demotest.DemoString()
+	demotest.DemoStrconv()
 }

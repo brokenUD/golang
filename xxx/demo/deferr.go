@@ -194,4 +194,52 @@ func DemotestFun19() {
 
 
 
+func func20(a, b int) int{
+	fmt.Println(a+b)
+	return a+b
+}
 
+func DemotestFun20() {
+    defer func(){
+		func20(1, func20(2, 3))
+		fmt.Println("111")
+	}()
+	defer func(){
+		func20(4, func20(5, 6))
+		fmt.Println("1111")
+	}()
+}
+
+func DemotestFun21() {
+    defer func20(1, func20(2, 3))
+	defer func20(4, func20(5, 6))
+}
+
+
+
+
+
+
+
+
+
+func DemotestFun22() {
+	defer func() {
+		// 这个defer 由19行触发
+		// recover 捕获异常，注意这里只捕获22行抛出的异常
+		if err := recover(); err != nil {
+			// 这里会打印 defer panic
+			fmt.Println(err)
+		} else {
+			fmt.Println("fatal")
+		}
+		// 最后输出 22行抛出的异常 defer panic   第一个panic已经被第二个panic覆盖了，所以不会有其他操作了
+	}()
+	// 1、先会执行这个defer
+	defer func() {
+		// 2、里面又发生了panic，会覆盖掉 23行 抛出的异常，接着往上执行defer 第8行
+		panic("defer panic")
+	}()
+	panic("panic")
+	fmt.Println("panic")
+}

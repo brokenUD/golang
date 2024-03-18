@@ -2,14 +2,14 @@ package main
 
 import (
     "fmt"
-	"math"
+	// "math"
 )
 
 type dataStruct struct{
     i int;
     j int;
 }
-func main() {
+func main1() {
     var a, b, c int
     // n, _ := fmt.Scan(&a, &b)
     // if n == 0 {
@@ -21,7 +21,7 @@ func main() {
 	b = 5
     datamap := make(map[int][]dataStruct, 0)
     var data [100][100]int
-	var data2 = new([][]int, a, b)
+	// var data2 = new([][]int, a, b)
 	// data := make([][]int, a, b)
     for i:=0;i<a;i++{
 		// s := make([]int, b)

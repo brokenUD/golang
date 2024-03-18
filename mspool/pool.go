@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"golang.org/x/text"
+	// "golang.org/x/text"
 )
 
 type sig struct{}

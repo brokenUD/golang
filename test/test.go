@@ -3,32 +3,26 @@ package main
 import (
 	"fmt"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
+	"reflect"
 )
 
-func main() {
-	// var bool1 bool
-	// var string1 string
-	// flag1 := flag.Bool("bool1", false, "布尔值")
-	// flag.Parse()
-	// fmt.Printf("%v, %v", flag.Args(), flag.NArg())
-	// flag.StringVar(&string1, "string1", "hahaha", "字符串")
-	// fmt.Println(*flag1)
-	// fmt.Println(string1)
-
-	// test1()
-	// test2()
-	// testchan()
-	// sliceSafety()
-	// syncMapTest()
-
-	// testtest()
-
-	// testsort()
-	teststring()
-}
+const (
+	A = iota
+	B = iota
+	C
+	D = -iota
+	E
+	F = "ad"
+	G
+	H = 100
+	I
+	J = iota
+	K
+)
 
 func test1() {
 	a := [3]int{1, 2, 3}
@@ -166,10 +160,14 @@ func testsort(){
 func teststring(){
 	s := "qwertresfs"
 	max := ""
+	bb := s[0]
+	fmt.Println(bb)
 	if len(s) <= 1 {
 		fmt.Println(s)
 	}
 	for i := 1; i<len(s);i++{
+		cc := s[i]
+		fmt.Println(cc)
 		if s[i] == s[i-1] {
 			min := ""
 			p := i-1
@@ -222,15 +220,137 @@ func teststring(){
 	fmt.Println(num1/num2)
 
 
-	qq1 := []byte{}
-	qq1 = append(qq1, 'a')
-	if qq1 == q1[2:3] {
-		fmt.Println(true)
-	}
-	for i:=0;i<len(q1);i++{
-		t := q1[i]
-		fmt.Println(t)
+	p1 := 10
+	p1s := strconv.Itoa(p1)
+	p2, _ := strconv.Atoi(p1s)
+	p3, _ := strconv.ParseInt(p1s, 10, 8)
+	p4s := strconv.FormatInt(p3, 10)
+	fmt.Println(p1,p1s,p2,p3,p4s)
+
+}
+
+type Phone interface{
+	call()
+}
+
+type iPhone struct{}
+type pPhone struct{}
+
+func (i iPhone) call() {
+	fmt.Println("iPhone")
+}
+
+func (p pPhone) call() {
+	fmt.Println("pPhone")
+}
+
+func testInterface(){
+	var p Phone
+	p = iPhone{}
+	p.call()
+	p = pPhone{}
+	p.call()
+}
+
+func testForRange(){
+	arr := []int{1,2,3,4}
+	for a, b := range arr {
+		fmt.Println(a, &a, b, &b, &arr[a])
 	}
 }
 
+func testReflect(){
+	type MyStruct struct {
+		A int
+		B string
+	}
 
+	s := MyStruct{A: 20, B: "hello"}
+	sv := reflect.ValueOf(s)
+
+	for i := 0; i < sv.NumField(); i++ {
+		valueField := sv.Field(i)
+		typeField := sv.Type().Field(i)
+		fmt.Printf("Field Name: %s, Field Value: %v\n", typeField.Name, valueField.Interface())
+	}
+}
+
+func testMap(){
+	a := make(map[int]int, 0)
+	a[1] = 1
+	a[2] = 2
+	a[3] = 3
+	a[4] = 4
+	a[5] = 5
+	for i, k := range a {
+		fmt.Println(i, k)
+	}
+
+	b := make(map[chan int]int, 0)
+	fmt.Println(b)
+}
+
+func testGo() {
+	wg := sync.WaitGroup{}
+	wg.Add(2)
+	go func() {
+		select {
+		case <- time.After(1000*time.Second):
+		}
+		wg.Done()
+	}()
+
+	go func() {
+		select {
+		case <- time.After(1000*time.Second):
+		}
+		wg.Done()
+	}()
+	wg.Wait()
+}
+
+func main() {
+	// var bool1 bool
+	// var string1 string
+	// flag1 := flag.Bool("bool1", false, "布尔值")
+	// flag.Parse()
+	// fmt.Printf("%v, %v", flag.Args(), flag.NArg())
+	// flag.StringVar(&string1, "string1", "hahaha", "字符串")
+	// fmt.Println(*flag1)
+	// fmt.Println(string1)
+
+	// test1()
+	// test2()
+	// testchan()
+	// sliceSafety()
+	// syncMapTest()
+
+	// testtest()
+
+	// testsort()
+	// teststring()
+	// testInterface()
+
+	// testForRange()
+	// testReflect()
+	// testMap()
+
+	// testGo()
+	tt()
+
+}
+
+func tt(){
+	var arr [3]int
+	brr := arr[1:2]
+	fmt.Println(arr, brr, len(brr), cap(brr))
+	brr = append(brr, 9)
+	fmt.Println(arr, brr, len(brr), cap(brr))
+	brr = append(brr, 9)
+	fmt.Println(arr, brr, len(brr), cap(brr))
+	crr := brr
+	crr = append(crr, 1)
+	crr = append(crr, 1)
+	crr = append(crr, 1)
+	fmt.Println(arr, brr, len(brr), cap(brr), cap(crr))
+}
