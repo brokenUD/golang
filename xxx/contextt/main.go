@@ -174,7 +174,7 @@ func Fa5(ctx context.Context){
 	resp := make(chan struct{}, 1)
 
 	go func(){
-		time.Sleep(time.Second*30)
+		time.Sleep(time.Second*20)
 		resp <- struct{}{}
 	}()
 
@@ -182,7 +182,7 @@ func Fa5(ctx context.Context){
 	case <- ctx.Done():
 		fmt.Println("ctx timeout")
 		fmt.Println(ctx.Err())
-		return
+		// return
 	case <- hctx.Done():
 		fmt.Println("htcx timeout")
 		fmt.Println(hctx.Err())
@@ -198,7 +198,7 @@ func Fa5(ctx context.Context){
 
 
 
-func main2(){
+func main(){
 	//创建trace文件
     f, err := os.Create("trace.out")
     if err != nil {

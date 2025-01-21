@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
+	// "math"
+	"reflect"
 	"sort"
 	"strconv"
 	"strings"
 	"sync"
 	"time"
-	"reflect"
 )
 
 const (
@@ -336,21 +337,77 @@ func main() {
 	// testMap()
 
 	// testGo()
-	tt()
+	// tt()
 
+	// a := " s s s "
+	// b :=[]byte(a)
+	// fmt.Println(b)
+	// c := string(b)
+	// fmt.Println(c)
+	// if b[0] == 's' {
+	// 	fmt.Println("s")
+	// }
+	// a = strings.TrimSpace(a)
+	// fmt.Println(a, len(a))
+	// grid := [][]byte{}
+	// isOver(grid, 0, 0)
+	// fmt.Println(reflect.TypeOf(a[0]))
+
+	// mp := map[uint8]int{}
+	// mp[a[0]]++
+	// mp[a[1]]++
+	// fmt.Println(mp)
+	// delete(mp, a[0])
+	// fmt.Println(mp)
+	// // strings.Split(a, ",")
+
+	// aaa := 1.1
+	// baa := math.Sqrt(aaa)
+	// fmt.Println(baa)
+	num1 := []int{1,2,3}
+	num2 := []int{4,5}
+	num3 := copy(num2, num1)
+	fmt.Println(num3, num1, num2)
 }
 
-func tt(){
-	var arr [3]int
-	brr := arr[1:2]
-	fmt.Println(arr, brr, len(brr), cap(brr))
-	brr = append(brr, 9)
-	fmt.Println(arr, brr, len(brr), cap(brr))
-	brr = append(brr, 9)
-	fmt.Println(arr, brr, len(brr), cap(brr))
-	crr := brr
-	crr = append(crr, 1)
-	crr = append(crr, 1)
-	crr = append(crr, 1)
-	fmt.Println(arr, brr, len(brr), cap(brr), cap(crr))
+func isOver(grid [][]byte, x, y int) bool {
+    return x>=0 && x<len(grid) && y>=0 && y<len(grid[0])
 }
+
+func tt() {
+	a := []int{1, 2, 3}
+	fmt.Println(cap(a))
+	b := []int{2, 3, 4, 5, 6}
+	c := []int{3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0}
+	a = append(a, b...)
+	fmt.Println(cap(a))
+	// a = append(a, 3)
+	fmt.Println(cap(a))
+	a = append(a, c...)
+	fmt.Println(cap(a))
+	for i:=0;i<1000;i++{
+		a =append(a, i)
+	}
+	fmt.Println(cap(a))
+	// a = a[:0]
+	// fmt.Println(cap(a))
+	d := a[8:20]
+	fmt.Println(cap(d))
+	e := a[:20]
+	fmt.Println(cap(e))
+	f := a[10:]
+	fmt.Println(cap(f))
+
+
+	ch := make(chan int, 5)
+	ch<- 5
+	ch<- 4
+	close(ch)
+	s := <-ch
+	fmt.Println(s)
+	s = <-ch
+	fmt.Println(s)
+	s = <-ch
+	fmt.Println(s)
+}
+
