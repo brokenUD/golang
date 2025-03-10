@@ -88,11 +88,11 @@ func main() {
 	// 模拟 HTTP 请求
 	req1 := &http.Request{
 		Header: http.Header{"Authorization": []string{"valid-token"}},
-		URL:    &http.URL{Path: "/api/data"},
+		// URL:    &http.URL{Path: "/api/data"},
 	}
 	req2 := &http.Request{
 		Header: http.Header{"Authorization": []string{"invalid-token"}},
-		URL:    &http.URL{Path: "/api/limited"},
+		// URL:    &http.URL{Path: "/api/limited"},
 	}
 
 	// 测试请求1（正常流程）
